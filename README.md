@@ -14,20 +14,58 @@
 Write code that prints out all the numbers from 1 to 10 as a single string.
 (Hint: the `String()` function can convert an Int to a String)
 
+```swift
+var numberString = (1...10)
+
+for x in numberString {
+print(String(x), terminator: " ")
+}
+```
+
 ***
 ## Question 2
 
 Write code that prints out all the even numbers from 5 to 51 as a single string.
 
+```swift
+var numberString = (5...51)
+
+for x in numberString {
+if x % 2 == 0 {
+print(String(x), terminator: " ")
+}
+}
+```
 ***
 ## Question 3
 
 Write code that prints out every number ending in 4 between 1 and 60 as a single string.
 
+```swift
+var numberString = (1...60)
+var starter = 4
+
+for _ in numberString {
+if starter <= 60 {
+print(String(starter), terminator: " ")
+starter += 10
+}
+}
+```
+
 ***
 ## Question 4
 
 Print each character in the string `"Hello world!"`
+
+```swift
+var string = "Hello world!"
+
+for character in string {
+print(character)
+}
+
+```
 
 ***
 ## Question 5
@@ -35,6 +73,13 @@ Print each character in the string `"Hello world!"`
 Print out the last character in the string below.  You cannot use the Character literal "!" (i.e you must access `myStringSeven`'s characters).
 
 `let myStringSeven = "Hello world!"`
+
+```swift
+let myStringSeven = "Hello world!"
+
+print(myStringSeven.last ?? 12)
+
+```
 
 ***
 ## Question 6
@@ -48,26 +93,61 @@ Write code that switches on a string, given the following conditions:
 
 Initialize a String with a character. Show that it is a Character, and not another String, that you're using to initialize it.
 
+```swift
+
+```
+
 ***
 ## Question 8
 
 Build five pairs of **canonically equivalent** strings, the first of each being a pre-composed character and the second being one that uses combinable unicode scalars. Show that they are equivalent.
+
+```swift
+let firstCanCombo = "\u{0075}\u{0308}"
+let firstCanSingle = "\u{00FC}"
+print(firstCanCombo == firstCanSingle)
+
+let secondCanCombo = "\u{0075}\u{0302}"
+let secondCanSingle = "\u{00FB}"
+print(secondCanCombo == secondCanSingle)
+
+let thirdCanCombo = "\u{0075}\u{0301}"
+let thirdCanSingle = "\u{00FA}"
+print(thirdCanCombo == thirdCanSingle)
+
+let fourthCanCombo = "\u{0075}\u{0300}"
+let fourthCanSingle = ("\u{00F9}")
+print(fourthCanCombo == fourthCanSingle)
+
+let fifthCanCombo = "\u{0079}\u{0301}"
+let fifthCanSingle = ("\u{00FD}")
+print(fifthCanCombo == fifthCanSingle)
+```
 
 ***
 ## Question 9
 
 **Using only Unicode**, print out `"HELLO WORLD!"`
 
+```swift
+print("\u{0048}\u{0045}\u{004C}\u{004C}\u{004F}\u{00A0}\u{0057}\u{004F}\u{0052}\u{004C}\u{0044}\u{0021}")
+```
 ***
 ## Question 10
 
 **Using only Unicode**, print out your name.
 
+```swift
+print("\u{004C}\u{0069}\u{0061}\u{006E}\u{0061}")
+```
 ***
 ## Question 11
 
 **Using only Unicode**, print out `"HELLO WORLD!"` in another language.
 
+```swift
+print("\u{00A1}\u{0048}\u{004F}\u{004C}\u{0041}\u{00A0}\u{004D}\u{0055}\u{004E}\u{0044}\u{004F}\u{00A1}")
+```
 ***
 ## Question 12
 
@@ -89,6 +169,21 @@ Flower Box:
 | ⚘ | ⚘ | ⚘ | ⚘ | ⚘ |
 | ⚘ | ⚘ | ⚘ | ⚘ | ⚘ |
 - - - - - - - - - - -
+
+var dashes = "\u{02D7} "
+var flower = "\u{2698}"
+var horizontalDash = "\u{007C}"
+
+let topAndBottom = String(repeating: dashes , count: 11)
+print(topAndBottom)
+
+for _ in 1...7 {
+for _ in 1...5 {
+print("\(horizontalDash) \(flower) ", terminator: "")
+}
+print(horizontalDash)
+}
+print(topAndBottom)
 ```
 
 ***
@@ -115,7 +210,10 @@ You are given a string stored in the variable `aString`. Create new string named
 
 ```swift
 var aString = "Replace the letter e with \*"
-// Your code here
+//Your code here
+let replacedString = aString.replacingOccurrences(of: "e", with: "*")
+print(replacedString)
+
  ```
 
 Example:
@@ -135,7 +233,11 @@ You are given a string stored in variable `aString`. Create a new string called 
 var aString = "this string has 29 characters"
 var reverse = ""
 
-// Your code here
+//Your code here
+var aString = "this string has 29 characters"
+var reverse = String(aString.reversed())
+print(reverse)
+
 ```
 
 Example:
@@ -154,6 +256,9 @@ You are given a string stored in variable `aString`. Print `true` if `aString` i
 let aString = "anutforajaroftuna"
 
 // Your code here
+let aString = "anutforajaroftuna"
+let aStringBackwards = String(aString.reversed())
+print(aString == aStringBackwards)
 ```
 
 Example 1:
@@ -179,6 +284,15 @@ You are given a string stored in variable `problem`. Write code so that you prin
 var problem = "split this string into words and print them on separate lines"
 
 // Your code
+var problem = "split this string into words and print them on separate lines"
+
+for character in problem {
+if character == " " {
+print()
+continue
+}
+print(character, terminator: "")
+}
 ```
 
 Example:
@@ -209,6 +323,16 @@ You are given a string stored in variable `problem`. Write code that prints the 
 var problem = "find the longest word in the problem description"
 
 // Your code here
+var problem = "find the longest word in the problem description"
+var compOfProblem = problem.components(separatedBy: " ")
+var compHolder = ""
+
+for comp in compOfProblem {
+if comp.count > compHolder.count {
+compHolder = comp
+}
+}
+print(compHolder)
 ```
 
 Example:
